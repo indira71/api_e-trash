@@ -1,0 +1,7 @@
+runtime: nodejs14
+
+env_variables:
+  NODE_ENV: 'production'
+
+beta_settings:
+  cloud_sql_instances: e-trash_auth

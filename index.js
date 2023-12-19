@@ -9,6 +9,10 @@ const { createTokens, validateToken } = require("./JWT");
 app.use(express.json());
 app.use(cookieParser());
 
+app.get("/", (req, res) => {
+  res.send("Welcome to My App!");
+});
+
 app.post("/register", async (req, res) => {
   const { username, email, password } = req.body;
 
@@ -62,14 +66,10 @@ app.get("/profile", validateToken, (req, res) => {
     // Dapatkan informasi pengguna dari token yang valid
     const user = req.authData;
 
-    // Di sini, Anda dapat menyesuaikan dengan cara mendapatkan informasi profil yang sesuai
-    // Misalnya, Anda dapat melakukan query ke database atau menggunakan informasi yang sudah ada
-    // Di contoh ini, kita hanya mengembalikan beberapa informasi pengguna
     const userProfile = {
       id: user.id,
       username: user.username,
       email: user.email,
-      // tambahkan properti lain sesuai kebutuhan
     };
 
     res.status(200).json({ message: "Profile retrieved successfully", userProfile });
